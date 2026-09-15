@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { IMMICH_HOST } from '$app/env/public';
 	import { Container, Heading, Link, Stack, Text } from '@immich/ui';
 
 	const { data } = $props();
@@ -9,7 +10,7 @@
 		<Heading size="giant" tag="h1">Immich Share Prompter</Heading>
 
 		<Text>
-			Visit <Link href={data.immichHost}>your Immich instance</Link>
+			Visit <Link href={IMMICH_HOST}>your Immich instance</Link>
 		</Text>
 		<Text>
 			Maybe you want to share a photo from {data.cities.join(', ')}
