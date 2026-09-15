@@ -7,10 +7,8 @@ This project is a companion to [Immich](https://github.com/immich-app/immich). I
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
 ```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+docker build --target dev -t immich-share-prompter:dev .
+docker run --rm -p 5173:5173 -v $PWD:/app immich-share-prompter:dev
 ```
 
 ## Building
