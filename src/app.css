@@ -1,0 +1,5 @@
+@import 'tailwindcss';
+@import '@immich/ui/theme/default.css';
+
+/* Ensure Tailwind scans @immich/ui's component classes since they live in node_modules */
+@source '../node_modules/@immich/ui/dist';

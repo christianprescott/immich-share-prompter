@@ -1,12 +1,27 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="text-scale" content="scale" />
+
+		<script>
+			// Adapted from https://github.com/immich-app/static-pages/blob/1ed5241dfd1aded1d010949cab24dc0face0c300/apps/root.immich.app/src/app.html
+			try {
+				const preference = JSON.parse(localStorage.getItem('immich-ui-theme'));
+				const prefersDark = globalThis.matchMedia('(prefers-color-scheme: dark)').matches;
+				if (preference === 'light' || (preference !== 'dark' && !prefersDark)) {
+					document.documentElement.classList.remove('dark');
+					document.documentElement.classList.add('light');
+				}
+			} catch {
+				// noop
+			}
+		</script>
+
 		%sveltekit.head%
 	</head>
-	<body data-sveltekit-preload-data="hover">
+	<body data-sveltekit-preload-data="hover" class="bg-light text-dark">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
