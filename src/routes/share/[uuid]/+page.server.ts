@@ -3,7 +3,6 @@ import { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM, SMTP_TO } from '
 
 export const actions = {
 	default: async ({ request }) => {
-		const data = await request.formData();
 		const transport = nodemailer.createTransport({
 			host: SMTP_HOST,
 			port: SMTP_PORT,
