@@ -2,11 +2,11 @@
 	import '../app.css';
 
 	import favicon from '$lib/assets/favicon.svg';
+	import envelope from '$lib/assets/envelope.svg?raw';
 	import {
 		AppShell,
 		AppShellHeader,
 		Button,
-		Constants,
 		Logo,
 		ThemeSwitcher,
 		TooltipProvider
@@ -27,8 +27,27 @@
 			<div class="w-full">
 				<nav class="flex justify-between p-2 lg:gap-2">
 					<div class="flex place-items-center gap-2">
-						<a href="/" class="flex gap-2 text-4xl">
-							<Logo variant="inline" />
+						<a href="/" class="flex gap-2 text-4xl group">
+							<div class="relative size-12">
+								<div class="absolute inset-0 size-full">
+									{@html envelope}
+								</div>
+								<svg viewBox="0 0 24 24" class="absolute inset-0 size-full overflow-visible">
+									<foreignObject
+										width="24"
+										height="24"
+										class="overflow-visible"
+										clip-path="url(#envelope-clip)"
+									>
+										<div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%">
+											<Logo
+												variant="icon"
+												class="size-full transition-transform translate-y-0 group-hover:-translate-y-1.5"
+											/>
+										</div>
+									</foreignObject>
+								</svg>
+							</div>
 						</a>
 					</div>
 					<div class="flex place-items-center justify-end gap-2">
