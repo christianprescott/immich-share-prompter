@@ -7,8 +7,8 @@
 	<Stack gap={4}>
 		{params.uuid}
 		<img src="/assets/{params.uuid}" />
-		<form method="POST" action="/share">
-			<Field label="name">
+		<form method="POST" action="/share/{params.uuid}">
+			<Field label="Your name">
 				<Input name="name" value="Tom" />
 			</Field>
 			<Button type="submit">Submit</Button>
