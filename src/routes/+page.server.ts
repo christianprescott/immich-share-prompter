@@ -1,11 +1,8 @@
-import { IMMICH_HOST } from '$app/env/public';
-import { IMMICH_API_KEY } from '$app/env/private';
+import { getMapMarkers } from '$lib/server/immich';
 
 export async function load() {
-	const response = await fetch(IMMICH_HOST + '/api/map/markers', {
-		headers: { 'Content-Type': 'application/json', 'x-api-key': IMMICH_API_KEY }
-	});
+	const markers = await getMapMarkers({});
 	return {
-		cities: [...new Set((await response.json()).map((m) => m.city).filter((c) => !!c))]
+		cities: [...new Set(markers.map((m) => m.city).filter((c) => !!c))]
 	};
 }
