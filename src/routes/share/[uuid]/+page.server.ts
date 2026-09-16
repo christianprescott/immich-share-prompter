@@ -1,13 +1,5 @@
 import nodemailer from 'nodemailer';
-import { searchRandom } from '$lib/server/immich';
 import { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM, SMTP_TO } from '$app/env/private';
-
-export const load = async () => {
-	const assets = await searchRandom({});
-	return {
-		asset: assets[0]
-	};
-};
 
 export const actions = {
 	default: async ({ request }) => {
