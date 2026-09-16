@@ -1,4 +1,4 @@
-import { ImmichClient } from '$lib/server/immich';
+import ImmichClient from '$lib/server/immich';
 import type { RequestHandler } from '@sveltejs/kit';
 
 // Requests for Immich assets must be authenticated. Proxy requests so <img>

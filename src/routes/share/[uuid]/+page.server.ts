@@ -3,7 +3,7 @@ import { Readable } from 'node:stream';
 import nodemailer from 'nodemailer';
 import { redirect } from '@sveltejs/kit';
 import { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM, SMTP_TO } from '$app/env/private';
-import { ImmichClient } from '$lib/server/immich';
+import ImmichClient from '$lib/server/immich';
 
 export const actions = {
 	default: async ({ params, request }) => {

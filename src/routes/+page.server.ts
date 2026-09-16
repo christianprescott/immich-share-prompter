@@ -1,4 +1,4 @@
-import { ImmichClient } from '$lib/server/immich';
+import ImmichClient from '$lib/server/immich';
 
 export async function load() {
 	const client = new ImmichClient();

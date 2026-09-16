@@ -51,3 +51,5 @@ export class ImmichClient {
 		});
 	}
 }
+
+export default ImmichClient;
