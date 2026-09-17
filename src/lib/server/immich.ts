@@ -5,9 +5,13 @@ import type { RequestOpts } from '@oazapfts/runtime';
 
 // Define immich SDK methods that will be wrapped by ImmichClient to have
 // request opts injected.
-const SDK_METHODS = ['getMapMarkers', 'getAssetInfo'] as const satisfies ReadonlyArray<
-	keyof typeof sdk
->;
+const SDK_METHODS = [
+	'getAllAlbums',
+	'getAssetsByCity',
+	'getAssetInfo',
+	'searchAssets',
+	'searchRandom'
+] as const satisfies ReadonlyArray<keyof typeof sdk>;
 
 type OmitOpts<T> = T extends (...args: [...infer P, RequestOpts?]) => infer R
 	? (...args: P) => R

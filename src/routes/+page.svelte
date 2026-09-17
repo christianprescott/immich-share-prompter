@@ -1,6 +1,18 @@
 <script lang="ts">
 	import { IMMICH_HOST } from '$app/env/public';
-	import { Container, Heading, Link, Stack, Text } from '@immich/ui';
+	import {
+		Container,
+		Heading,
+		Link,
+		Stack,
+		Text,
+		ImageCarousel,
+		Button,
+		Logo,
+		LoadingSpinner,
+		Alert
+	} from '@immich/ui';
+	import { mdiOpenInNew } from '@mdi/js';
 
 	const { data } = $props();
 </script>
@@ -12,8 +24,15 @@
 		<Text>
 			Visit <Link href={IMMICH_HOST}>your Immich instance</Link>
 		</Text>
-		<Text>
-			Maybe you want to share a photo from {data.cities.join(', ')}
-		</Text>
+		<Text color="primary">Share something else?</Text>
+		{#await data.assets}
+			<LoadingSpinner size="giant" />
+		{:then assets}
+			<ImageCarousel items={assets} />
+		{:catch}
+			<Alert color="warning" title="Couldn't fetch recent photos">
+				Make sure your Immich host ({IMMICH_HOST}) is correct and your API key is valid.
+			</Alert>
+		{/await}
 	</Stack>
 </Container>
