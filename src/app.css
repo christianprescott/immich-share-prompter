@@ -3,3 +3,16 @@
 
 /* Ensure Tailwind scans @immich/ui's component classes since they live in node_modules */
 @source '../node_modules/@immich/ui/dist';
+
+@theme {
+	--animate-shimmer: shimmer 1.6s ease-in-out infinite;
+
+	@keyframes shimmer {
+		from {
+			background-position: 150% 0;
+		}
+		to {
+			background-position: -50% 0;
+		}
+	}
+}
