@@ -52,6 +52,7 @@
 					</div>
 					<div class="flex place-items-center justify-end gap-2">
 						<Button
+						    href="https://github.com/christianprescott/immich-share-prompter"
 							leadingIcon={siGithub.path}
 							trailingIcon={mdiOpenInNew}
 							color="secondary"
