@@ -8,5 +8,5 @@ export const variables = defineEnvVars({
 	SMTP_USER: {},
 	SMTP_PASS: {},
 	SMTP_FROM: {},
-	SMTP_TO: {}
+	SMTP_TO: { public: true }
 });

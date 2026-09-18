@@ -1,7 +1,16 @@
 <script>
-	import { IMMICH_HOST } from '$app/env/public';
-	import { Button, Container, Field, Input, Stack, Logo } from '@immich/ui';
-	import { mdiOpenInNew } from '@mdi/js';
+	import { IMMICH_HOST, SMTP_TO } from '$app/env/public';
+	import {
+		Button,
+		Container,
+		Field,
+		Input,
+		Stack,
+		Logo,
+		HStack,
+		IconButton
+	} from '@immich/ui';
+	import { mdiOpenInNew, mdiSend } from '@mdi/js';
 	const { params } = $props();
 </script>
 
@@ -18,10 +27,28 @@
 			>
 		</div>
 		<form method="POST" action="/share/{params.uuid}">
-			<Field label="Your name">
-				<Input name="name" value="Tom" />
-			</Field>
-			<Button type="submit">Submit</Button>
+			<HStack>
+				<Field label="Recipient" class="flex-1">
+					<Input size="large" shape="round" name="name" value={SMTP_TO} />
+				</Field>
+				<IconButton
+					type="submit"
+					icon={mdiSend}
+					size="large"
+					shape="round"
+					aria-label="Send email"
+					class="self-end sm:hidden"
+				/>
+				<Button
+					type="submit"
+					leadingIcon={mdiSend}
+					size="large"
+					shape="round"
+					class="self-end hidden sm:flex"
+				>
+					Send
+				</Button>
+			</HStack>
 		</form>
 	</Stack>
 </Container>
