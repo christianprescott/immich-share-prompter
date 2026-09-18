@@ -29,9 +29,13 @@
 		"vite": "^8.0.16"
 	},
 	"dependencies": {
+		"@csstools/postcss-color-mix-function": "^4.0.12",
+		"@csstools/postcss-oklab-function": "^5.0.12",
 		"@immich/sdk": "^3.2.2",
 		"@immich/ui": "^0.89.0",
 		"croner": "^10.0.1",
-		"nodemailer": "^10.0.10"
+		"juice": "^12.1.3",
+		"nodemailer": "^10.0.10",
+		"postcss": "^8.5.28"
 	}
 }
