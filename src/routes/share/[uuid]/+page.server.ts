@@ -2,6 +2,7 @@ import path from 'node:path';
 import { Readable } from 'node:stream';
 import nodemailer from 'nodemailer';
 import type { NodemailerError } from 'nodemailer';
+import addressparser from 'nodemailer/lib/addressparser';
 import { fail, redirect } from '@sveltejs/kit';
 import { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM, SMTP_TO } from '$app/env/private';
 import ImmichClient from '$lib/server/immich';
@@ -18,6 +19,19 @@ export const actions = {
 		const ext = path.extname(asset.originalFileName);
 
 		const toEmail = data.get('to')?.toString();
+		const [parsedAddress, ...rest] = addressparser(toEmail);
+		if (!parsedAddress || !parsedAddress.address) {
+			return fail(422, {
+				to: toEmail,
+				error: 'Enter a valid email address.'
+			});
+		}
+		if (rest.length > 0) {
+			return fail(422, {
+				to: toEmail,
+				error: 'Enter a single email address.'
+			});
+		}
 		const transport = nodemailer.createTransport({
 			host: SMTP_HOST,
 			port: SMTP_PORT,

@@ -45,6 +45,7 @@
 			<HStack>
 				<Field class="flex-1" invalid={!!form?.error}>
 					<Input
+						type="email"
 						size="large"
 						shape="round"
 						name="to"
