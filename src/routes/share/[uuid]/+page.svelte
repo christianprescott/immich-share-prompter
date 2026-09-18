@@ -1,4 +1,5 @@
 <script>
+	import { enhance } from '$app/forms';
 	import { IMMICH_HOST, SMTP_TO } from '$app/env/public';
 	import {
 		Button,
@@ -13,6 +14,8 @@
 	} from '@immich/ui';
 	import { mdiOpenInNew, mdiSend } from '@mdi/js';
 	const { params, form } = $props();
+
+	let submitting = $state(false);
 </script>
 
 <Container size="medium" center class="mt-8 mb-24 p-4 lg:p-8">
@@ -28,7 +31,17 @@
 				class="absolute top-2 inset-e-2"><Logo variant="icon" size="tiny" />View in timeline</Button
 			>
 		</div>
-		<form method="POST" action="/share/{params.uuid}">
+		<form
+			method="POST"
+			action="/share/{params.uuid}"
+			use:enhance={() => {
+				submitting = true;
+				return async ({ update }) => {
+					await update();
+					submitting = false;
+				};
+			}}
+		>
 			<HStack>
 				<Field class="flex-1" invalid={!!form?.error}>
 					<Input
@@ -50,6 +63,7 @@
 					shape="round"
 					aria-label="Send email"
 					class="self-start sm:hidden"
+					loading={submitting}
 				/>
 				<Button
 					type="submit"
@@ -57,6 +71,7 @@
 					size="large"
 					shape="round"
 					class="self-start hidden sm:flex"
+					loading={submitting}
 				>
 					Send
 				</Button>

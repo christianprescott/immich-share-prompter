@@ -30,6 +30,9 @@ export const actions = {
 			await transport.sendMail({
 				from: SMTP_FROM,
 				to: toEmail,
+				// subject: '',
+				// text: '',
+				// html: '',
 				attachments: [
 					{
 						filename: `photo${ext}`,
