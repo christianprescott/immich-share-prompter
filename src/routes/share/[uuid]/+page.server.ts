@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 import type { NodemailerError } from 'nodemailer';
 import addressparser from 'nodemailer/lib/addressparser';
 import { fail, redirect } from '@sveltejs/kit';
-import { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM, SMTP_TO } from '$app/env/private';
+import { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM } from '$app/env/private';
 import ImmichClient from '$lib/server/immich';
 
 export const actions = {
