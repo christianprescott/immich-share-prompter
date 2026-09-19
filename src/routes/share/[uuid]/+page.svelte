@@ -32,7 +32,7 @@
 						size="small"
 						color="secondary"
 						variant="outline"
-						class="absolute bottom-2 inset-e-2"
+						class="absolute top-2 inset-e-2"
 						><Logo variant="icon" size="tiny" />View in timeline</Button
 					>
 				</div>
