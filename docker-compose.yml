@@ -1,5 +1,5 @@
 services:
-  dev:
+  dev: &base
     build:
       context: .
       target: dev
@@ -16,3 +16,13 @@ services:
       - SMTP_TO
     volumes:
       - ./:/app/
+
+  worker:
+    <<: *base
+    # Extend dev, but override ports so as not to expose any.
+    ports: []
+    # Builds the worker bundle (see vite.worker.config.ts) and runs it as a
+    # separate, long-lived process from the web app. No hot-reload yet: rerun
+    # `docker compose up --build worker` (or restart the service) after
+    # changing worker code.
+    command: sh -c "npm run worker:build && npm run worker"
