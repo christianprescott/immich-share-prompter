@@ -26,7 +26,7 @@
 	let fetchAssetFilePromise;
 	function fetchAssetFile() {
 		fetchAssetFilePromise ??= (async () => {
-			const response = await fetch(`/assets/${params.uuid}`);
+			const response = await fetch(`/assets/${params.uuid}?size=preview`);
 			const blob = await response.blob();
 			const extension = blob.type.split('/')[1] ?? 'jpg';
 			return new File([blob], `${params.uuid}.${extension}`, { type: blob.type });
@@ -60,7 +60,7 @@
 		<CardBody>
 			<Stack gap={4}>
 				<div class="relative rounded-lg overflow-hidden">
-					<img src="/assets/{params.uuid}" />
+					<img src="/assets/{params.uuid}?size=preview" />
 					<Button
 						href={`${IMMICH_HOST}/photos?at=${params.uuid}`}
 						trailingIcon={mdiOpenInNew}

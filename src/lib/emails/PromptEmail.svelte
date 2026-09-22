@@ -11,7 +11,7 @@
 				<table role="presentation" align="center">
 					<tbody>
 						<tr>
-							<td style="padding-bottom: 8px;">
+							<td style="padding-bottom: 8px; text-align: center;">
 								<ImageCard
 									item={{
 										href: asset.href,
