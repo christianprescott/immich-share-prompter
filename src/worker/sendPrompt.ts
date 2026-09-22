@@ -1,9 +1,19 @@
 import nodemailer from 'nodemailer';
-import { getSuggestedAssets } from '$lib/server/assets';
+import ImmichClient from '$lib/server/immich';
 import { renderEmail } from '$lib/server/render-email';
 import PromptEmail from '$lib/emails/PromptEmail.svelte';
 
-const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM, SMTP_TO } = process.env;
+const {
+	APP_HOST,
+	IMMICH_HOST,
+	IMMICH_API_KEY,
+	SMTP_HOST,
+	SMTP_PORT,
+	SMTP_USER,
+	SMTP_PASS,
+	SMTP_FROM,
+	SMTP_TO
+} = process.env;
 const transport = nodemailer.createTransport({
 	host: SMTP_HOST,
 	port: Number(SMTP_PORT),
@@ -12,9 +22,9 @@ const transport = nodemailer.createTransport({
 
 export default async function sendPrompt() {
 	try {
-		const assets = await getSuggestedAssets();
+		const assets = await new ImmichClient(IMMICH_HOST, IMMICH_API_KEY).getSuggestedAssets();
 
-		const html = await renderEmail(PromptEmail, { asset: assets[0] });
+		const html = await renderEmail(APP_HOST, PromptEmail, { asset: assets[0] });
 		await transport.sendMail({
 			from: SMTP_FROM,
 			to: SMTP_TO,

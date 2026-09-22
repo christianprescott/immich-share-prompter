@@ -4,14 +4,22 @@ import nodemailer from 'nodemailer';
 import type { NodemailerError } from 'nodemailer';
 import addressparser from 'nodemailer/lib/addressparser';
 import { fail, redirect } from '@sveltejs/kit';
-import { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM } from '$app/env/private';
+import {
+	IMMICH_API_KEY,
+	SMTP_HOST,
+	SMTP_PORT,
+	SMTP_USER,
+	SMTP_PASS,
+	SMTP_FROM
+} from '$app/env/private';
+import { IMMICH_HOST } from '$app/env/public';
 import ImmichClient from '$lib/server/immich';
 
 export const actions = {
 	default: async ({ params, request }) => {
 		const data = await request.formData();
 
-		const client = new ImmichClient();
+		const client = new ImmichClient(IMMICH_HOST, IMMICH_API_KEY);
 		const [asset, res] = await Promise.all([
 			client.getAssetInfo({ id: params.uuid }),
 			client.proxy(`/assets/${params.uuid}/thumbnail?size=preview`)

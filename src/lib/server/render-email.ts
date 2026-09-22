@@ -6,7 +6,6 @@ import customProperties from 'postcss-custom-properties';
 import { transform, Features } from 'lightningcss';
 import juice from 'juice';
 import absolutify from 'absolutify';
-import { APP_HOST } from '$app/env/public';
 
 // `?inline` runs app.css through vite CSS pipeline
 import appCss from '../../app.css?inline';
@@ -81,6 +80,7 @@ const emailSafeCss = (async () => {
  * resulting styles onto each element.
  */
 export async function renderEmail<Props extends Record<string, any>>(
+	appHost: string,
 	component: Component<Props>,
 	props: Props
 ): Promise<string> {
@@ -100,7 +100,7 @@ export async function renderEmail<Props extends Record<string, any>>(
 </html>`;
 
 	// transform relative paths to absolute ones for links and imgs
-	const absolute = absolutify(html, APP_HOST.replace(/\/+$/, ''));
+	const absolute = absolutify(html, appHost.replace(/\/+$/, ''));
 
 	return juice(absolute, {
 		removeStyleTags: true,

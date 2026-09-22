@@ -1,19 +1,21 @@
 import path from 'node:path';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
+import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 
 // Build the background worker as a standalone Node entrypoint. This produces a
 // plain JS bundle in build-worker/, with no runtime dependency on Vite.
-//
-// TODO: once email templates are written as .svelte components, add
-// @sveltejs/vite-plugin-svelte's `svelte()` plugin here (with
-// `compilerOptions: { generate: 'server' }`) so this build can compile them
-// for use with `render()` from 'svelte/server'.
 export default defineConfig({
+	plugins: [tailwindcss(), svelte()],
 	resolve: {
 		alias: {
-			// Mirrors SvelteKit's default $lib alias so worker code can import
-			// shared modules from src/lib the same way the web app does.
-			$lib: path.resolve('src/lib')
+			// Mock SvelteKit paths
+			$lib: path.resolve('src/lib'),
+			// Stub SvelteKit paths imported by @immich/ui components. The worker
+			// doesn't currently use these components.
+			'$app/environment': path.resolve('src/worker/stubs/app-environment.ts'),
+			'$app/navigation': path.resolve('src/worker/stubs/app-navigation.ts'),
+			'$app/state': path.resolve('src/worker/stubs/app-state.ts')
 		}
 	},
 	build: {

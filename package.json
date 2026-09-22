@@ -8,8 +8,8 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"worker:build": "vite build --config vite.worker.config.ts",
+		"worker:run": "vite-node --config vite.worker.config.ts --options.transformMode.ssr='\\.svelte$' src/worker/testPrompt.ts",
 		"worker": "node build-worker/entry.js",
-		"worker:run": "node --experimental-strip-types -e \"import('./src/worker/sendPrompt.ts').then(m => m.default())\"",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -27,7 +27,8 @@
 		"svelte-check": "^4.6.0",
 		"tailwindcss": "^4.2.2",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
+		"vite": "^8.0.16",
+		"vite-node": "^6.0.0"
 	},
 	"dependencies": {
 		"@csstools/postcss-cascade-layers": "^6.0.0",
