@@ -4,7 +4,7 @@ import { fail } from '@sveltejs/kit';
 import { mdiOpenInNew } from '@mdi/js';
 import { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM } from '$app/env/private';
 import { IMMICH_HOST, SMTP_TO } from '$app/env/public';
-import ButtonEmail from '$lib/emails/ButtonEmail.svelte';
+import PromptEmail from '$lib/emails/PromptEmail.svelte';
 import { renderEmail } from '$lib/server/render-email';
 import { getSuggestedAssets } from '$lib/server/assets';
 
@@ -22,7 +22,7 @@ export const actions = {
 		try {
 			const assets = await getSuggestedAssets();
 
-			const html = await renderEmail(ButtonEmail, { asset: assets[0] });
+			const html = await renderEmail(PromptEmail, { asset: assets[0] });
 			await transport.sendMail({
 				from: SMTP_FROM,
 				to: SMTP_TO,
