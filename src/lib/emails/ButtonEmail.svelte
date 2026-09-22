@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { IMMICH_HOST } from '$app/env/public';
 	import { Button, ImageCard } from '@immich/ui';
 
 	const assetId = 'dac8f9ca-750a-4b2f-b4d5-0489ddbab355';
