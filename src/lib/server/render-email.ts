@@ -5,6 +5,8 @@ import cascadeLayers from '@csstools/postcss-cascade-layers';
 import customProperties from 'postcss-custom-properties';
 import { transform, Features } from 'lightningcss';
 import juice from 'juice';
+import absolutify from 'absolutify';
+import { APP_HOST } from '$app/env/public';
 
 // `?inline` runs app.css through Vite's normal CSS pipeline (Tailwind +
 // @immich/ui's theme, scanning @immich/ui/dist for the classes it uses),
@@ -175,7 +177,15 @@ export async function renderEmail<Props extends Record<string, any>>(
 	</body>
 </html>`;
 
-	return juice(html, {
+	// Svelte renders `href`/`src` values as-authored, so root-relative paths
+	// (e.g. `/assets/{uuid}`, from routes belonging to this app rather than
+	// `IMMICH_HOST`) stay relative. There's no current page to resolve them
+	// against in an email client, so make them absolute against this app's
+	// own public origin. `absolutify` always joins with its own `/`, so a
+	// trailing slash on `APP_HOST` would otherwise produce `https://host//path`.
+	const absolute = absolutify(html, APP_HOST.replace(/\/+$/, ''));
+
+	return juice(absolute, {
 		removeStyleTags: true,
 		preserveMediaQueries: false,
 		preserveFontFaces: false,
