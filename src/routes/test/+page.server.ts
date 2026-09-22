@@ -6,6 +6,7 @@ import { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM } from '$app/env/
 import { IMMICH_HOST, SMTP_TO } from '$app/env/public';
 import ButtonEmail from '$lib/emails/ButtonEmail.svelte';
 import { renderEmail } from '$lib/server/render-email';
+import { getSuggestedAssets } from '$lib/server/assets';
 
 export const actions = {
 	default: async () => {
@@ -19,7 +20,9 @@ export const actions = {
 		});
 
 		try {
-			const html = await renderEmail(ButtonEmail, {});
+			const assets = await getSuggestedAssets();
+
+			const html = await renderEmail(ButtonEmail, { asset: assets[0] });
 			await transport.sendMail({
 				from: SMTP_FROM,
 				to: SMTP_TO,

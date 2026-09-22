@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button, ImageCard } from '@immich/ui';
 
-	const assetId = 'dac8f9ca-750a-4b2f-b4d5-0489ddbab355';
+	const { asset } = $props();
 </script>
 
 <table role="presentation" width="100%">
@@ -14,8 +14,8 @@
 							<td style="padding-bottom: 8px;">
 								<ImageCard
 									item={{
-										href: `/share/${assetId}`,
-										src: `/assets/${assetId}`,
+										href: asset.href,
+										src: asset.src,
 										title: '',
 										alt: ''
 									}}
@@ -24,8 +24,7 @@
 						</tr>
 						<tr>
 							<td style="padding-bottom: 8px; text-align: center;">
-								<Button color="primary" shape="semi-round" href={`/share/${assetId}`} fullWidth
-									>Share</Button
+								<Button color="primary" shape="semi-round" href={asset.href} fullWidth>Share</Button
 								>
 							</td>
 						</tr>
