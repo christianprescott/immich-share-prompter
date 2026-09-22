@@ -9,6 +9,7 @@
 		"preview": "vite preview",
 		"worker:build": "vite build --config vite.worker.config.ts",
 		"worker": "node build-worker/entry.js",
+		"worker:run": "node --experimental-strip-types -e \"import('./src/worker/sendPrompt.ts').then(m => m.default())\"",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
