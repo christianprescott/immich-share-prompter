@@ -28,8 +28,8 @@ export default async function sendPrompt() {
 		await transport.sendMail({
 			from: SMTP_FROM,
 			to: SMTP_TO,
-			subject: 'Share a recent photo!',
-			text: `${IMMICH_HOST}`,
+			subject: 'Share a photo!',
+			text: `Ready to share a recent photo? ${APP_HOST + assets[0]?.href}\n\nMore suggestions ${APP_HOST}`,
 			html
 		});
 		console.log('[worker] reminder email sent');
