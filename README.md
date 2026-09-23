@@ -1,6 +1,9 @@
 # Immich Share Prompter
 
-This project is a companion to [Immich](https://github.com/immich-app/immich). It periodically sends subscribed Immich users a notification prompting them to share a recent photo via email.
+Periodically send Immich users a notification encouraging them to share a recent photo from your library. This project is a companion to [Immich](https://github.com/immich-app/immich).
+
+![Screenshots of immich-share-prompter showing a notification email and pages of the web app](static/screenshot.jpg)
+
 
 ## Developing
 
@@ -23,6 +26,6 @@ You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
 
-## LICENSE
+## License
 
 This project is published under the AGPL-3.0 license because it depends on `@immich/sdk`'s API client.
