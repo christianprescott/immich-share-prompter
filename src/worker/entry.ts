@@ -5,6 +5,7 @@ async function maybeSendPrompt() {
 	// Until notifications are tracked in data store, use a random number to run
 	// about once every two days.
 	const roll = Math.random();
+	console.log(`[worker] rolled ${roll.toFixed(3)}, need < ${(1 / 48).toFixed(3)}`);
 	if (roll < 1 / 48) {
 		await sendPrompt();
 	}
