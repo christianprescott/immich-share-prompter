@@ -143,9 +143,18 @@ export class ImmichClient {
 			)
 		);
 		return Promise.all([assetsFromAlbum, assetsFromPlace, assetsWithPeopleNotInAlbum]).then(
-			(allAssets) => allAssets.reduce((acc, assets) => acc.concat(assets))
+			(allAssets) => shuffle(allAssets.reduce((acc, assets) => acc.concat(assets)))
 		);
 	}
+}
+
+// Fisher-Yates shuffle
+function shuffle<T>(items: T[]): T[] {
+	for (let i = items.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[items[i], items[j]] = [items[j], items[i]];
+	}
+	return items;
 }
 
 export default ImmichClient;
