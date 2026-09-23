@@ -1,10 +1,21 @@
 @import 'tailwindcss';
 @import '@immich/ui/theme/default.css';
 
+/* Same typeface used by Immich: https://github.com/immich-app/immich */
+@import '@fontsource/google-sans/latin-400.css';
+@import '@fontsource/google-sans/latin-500.css';
+@import '@fontsource/google-sans/latin-600.css';
+@import '@fontsource/google-sans/latin-700.css';
+@import '@fontsource/google-sans-code/latin-400.css';
+@import '@fontsource/google-sans-code/latin-500.css';
+
 /* Ensure Tailwind scans @immich/ui's component classes since they live in node_modules */
 @source '../node_modules/@immich/ui/dist';
 
 @theme {
+	--font-sans: 'Google Sans', sans-serif;
+	--font-mono: 'Google Sans Code', monospace;
+
 	--animate-shimmer: shimmer 1.6s ease-in-out infinite;
 
 	@keyframes shimmer {

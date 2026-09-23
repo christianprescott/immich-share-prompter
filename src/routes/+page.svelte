@@ -20,14 +20,8 @@
 
 <Container size="medium" center class="mt-8 mb-24 p-4 lg:p-8">
 	<Stack gap={4}>
-		<Heading size="giant" tag="h1">Immich Share Prompter</Heading>
-
-		<Text>
-			Visit <Link href={IMMICH_HOST}>your Immich instance</Link>
-		</Text>
-
 		<Stack gap={0}>
-			<Text color="primary">Share something else?</Text>
+			<Text>Share something else?</Text>
 			{#await data.assets}
 				<ShimmerCarousel />
 			{:then assets}
@@ -40,7 +34,7 @@
 			<Button
 				href={IMMICH_HOST}
 				trailingIcon={mdiOpenInNew}
-				color="primary"
+				color="secondary"
 				variant="outline"
 				class="self-end"><Logo variant="icon" size="tiny" />More photos</Button
 			>

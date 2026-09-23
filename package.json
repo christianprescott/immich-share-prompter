@@ -33,6 +33,8 @@
 	},
 	"dependencies": {
 		"@csstools/postcss-cascade-layers": "^6.0.0",
+		"@fontsource/google-sans": "^5.3.1",
+		"@fontsource/google-sans-code": "^5.3.1",
 		"@immich/sdk": "^3.2.2",
 		"@immich/ui": "^0.89.0",
 		"absolutify": "^0.1.0",
